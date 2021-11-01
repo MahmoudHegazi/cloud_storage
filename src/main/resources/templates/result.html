@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+        <title>Result</title>
+    </head>
+    <body class="p-3 mb-2 bg-light text-black">
+        <div class="container justify-content-center w-50 p-3"  style="margin-top: 5em;">
+            <div class="alert alert-success fill-parent" th:if="${success_message}">
+                <h1 class="display-5">Success</h1>
+                <span id="saved_message" >Your changes were successfully saved. Click
+                    <a id="backHome_saved" href="/home">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-danger fill-parent" th:if="${error_message}">
+                <h1 class="display-5">Error</h1>
+                <span id="not_saved_message">Your changes were not saved. Click <a id="backHome_notSaved" href="/home">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-danger fill-parent" th:if="${error_message}">
+                <h1 class="display-5">Error</h1>
+                <span id="error_message"  th:text="${error_message}">Example Error Message</span>
+                <span>Click <a id="error_backHome" href="/home">here</a> to continue.</span>
+            </div>
+        </div>
+    </body>
+</html>

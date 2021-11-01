@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+        <title>Login</title>
+    </head>
+    <body class="p-3 mb-2 bg-light text-black">
+        <div class="container justify-content-center w-25 p-5" style="background-color: #eeeeee; margin-top: 5em;">
+            <h1 class="display-5 text-center">Login</h1>
+            <div id="errorContainer" class="container">
+
+            </div>
+
+            <form action="#" th:action="@{/login}" method="POST">
+                <div id="invalid_credentials" th:if="${param.error}" class="alert alert-danger">Invalid username or password</div>
+                <!-- I set redirect logout logical to login page url I will check if it redirected from home and will display error -->
+                <!-- generated with JavaScript used remove to make sure element not exist if normal login -->
+                <!-- You have been logged out -->
+                <div class="form-group">
+                    <label for="inputUsername">Username</label>
+
+                    <input type="input" class="form-control" autocomplete="username" name="username" id="inputUsername" placeholder="Enter Username" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" autocomplete="current-password" class="form-control" name="password" id="inputPassword" placeholder="Enter Password" maxlength="20" required>
+                </div>
+
+                <div class="container">
+                  <button id="login_button" type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+                </div>
+            </form>
+
+            <div class="form-group text-center" style="margin-top: 0.5em;">
+                <label><a id="signup_btn" href="/signup" th:href="@{/signup}">Click here to sign up</a></label>
+            </div>
+
+            <!-- if user visit loggin while he logged display logout option -->
+            <div class="container" th:if="${logged}">
+              <form id="logout_form" action="#" th:action="@{/logout}" method="POST" class="form-inline">
+                  <button type="submit" class="btn btn-danger float-right" style="width:100%;">Logout <span th:text="${logged}"></span></button>
+              </form>
+                <a href="/home" class="btn btn-secondary" style="width:100%;">Back Home {<span th:text="${logged}"></span>} </a>
+            </div>
+        </div>
+
+    <script src="/js/logout_script.js"></script>
+    </body>
+</html>
