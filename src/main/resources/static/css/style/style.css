@@ -1,0 +1,12 @@
+/*!
+ * super stylesheet
+ * Copyright 2011-2018 mahmoud
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT
+ */
+.show_pass_icon{
+     cursor: pointer;
+     position: absolute;
+     top: 8px;
+     right: 8px;
+ }

@@ -20,5 +20,4 @@ public class NoteFormAdd {
         this.noteDescription = noteDescription;
     }
 
-
 }

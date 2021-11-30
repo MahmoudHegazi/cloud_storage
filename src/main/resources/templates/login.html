@@ -10,11 +10,15 @@
     </head>
     <body class="p-3 mb-2 bg-light text-black">
         <div class="container justify-content-center w-25 p-5" style="background-color: #eeeeee; margin-top: 5em;">
+            <!-- success signup message -->
+            <div th:if="${success_signup_message}" class="p-2 alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong id="success-signup-message" th:text="${success_signup_message}">You successfully signed up!</strong>
+            </div>
             <h1 class="display-5 text-center">Login</h1>
             <div id="errorContainer" class="container">
 
             </div>
-
             <form action="#" th:action="@{/login}" method="POST">
                 <div id="invalid_credentials" th:if="${param.error}" class="alert alert-danger">Invalid username or password</div>
                 <!-- I set redirect logout logical to login page url I will check if it redirected from home and will display error -->
@@ -44,7 +48,7 @@
               <form id="logout_form" action="#" th:action="@{/logout}" method="POST" class="form-inline">
                   <button type="submit" class="btn btn-danger float-right" style="width:100%;">Logout <span th:text="${logged}"></span></button>
               </form>
-                <a href="/home" class="btn btn-secondary" style="width:100%;">Back Home {<span th:text="${logged}"></span>} </a>
+                <a href="/home" class="btn btn-secondary" style="width:100%;">Back Home <span th:text="${logged}"></span> </a>
             </div>
         </div>
 

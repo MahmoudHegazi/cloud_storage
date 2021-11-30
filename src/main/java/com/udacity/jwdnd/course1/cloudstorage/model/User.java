@@ -19,7 +19,6 @@ public class User {
     private String first_name;
     private String last_name;
 
-
     public User(Integer userId, String username, String salt, String password, String first_name, String last_name) {
         this.userId = userId;
         this.username = username;

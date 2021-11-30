@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS USERS (
   `userid` int(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(20),
@@ -7,7 +8,7 @@ CREATE TABLE IF NOT EXISTS USERS (
   `lastname` VARCHAR(20)
 );
 
-
+'''Drop TABLE IF EXISTS NOTES;'''
 CREATE TABLE IF NOT EXISTS NOTES (
     note_id INT PRIMARY KEY auto_increment,
     note_title VARCHAR(20),
@@ -16,24 +17,25 @@ CREATE TABLE IF NOT EXISTS NOTES (
     foreign key (user_id) references USERS(user_id)
 );
 
+'''Drop TABLE IF EXISTS FILES;'''
 CREATE TABLE IF NOT EXISTS FILES (
-    file_id INT PRIMARY KEY auto_increment,
-    file_name VARCHAR,
-    content_type VARCHAR,
-    file_size VARCHAR,
-    user_id INT,
-    file_data BLOB,
+    `file_id` INT PRIMARY KEY auto_increment,
+    `file_name` VARCHAR,
+    `file_size` VARCHAR,
+    `content_type` VARCHAR,
+    `user_id` INT,
+    `file_data` BLOB NULL,
     foreign key (user_id) references USERS(user_id)
 );
 
 
-
+'''Drop TABLE IF EXISTS CREDENTIALS;'''
 CREATE TABLE IF NOT EXISTS CREDENTIALS (
     credentials_id INT PRIMARY KEY auto_increment,
-    url VARCHAR(100),
-    username VARCHAR (30),
-    secret_key VARCHAR,
-    password VARCHAR,
-    user_id INT,
+    url VARCHAR(100) NOT NULL,
+    uname VARCHAR NOT NULL,
+    secret_key VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    user_id INT NOT NULL,
     foreign key (user_id) references USERS(user_id)
 );

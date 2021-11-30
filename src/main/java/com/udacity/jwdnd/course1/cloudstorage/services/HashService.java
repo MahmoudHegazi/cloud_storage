@@ -11,11 +11,12 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
+
 @Component
 public class HashService {
-    private Logger logger = LoggerFactory.getLogger(HashService.class);
+    private static Logger logger = LoggerFactory.getLogger(HashService.class);
 
-    public String getHashedValue(String data, String salt) {
+    public static String getHashedValue(String data, String salt) {
         byte[] hashedValue = null;
 
         KeySpec spec = new PBEKeySpec(data.toCharArray(), salt.getBytes(), 5000, 128);
@@ -29,3 +30,4 @@ public class HashService {
         return Base64.getEncoder().encodeToString(hashedValue);
     }
 }
+

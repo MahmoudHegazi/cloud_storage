@@ -30,6 +30,11 @@ public class LoginPage {
     @FindBy(id = "logout_message")
     private WebElement logoutMessage;
 
+    @FindBy(id = "success-signup-message")
+    private WebElement successSignupMessage;
+
+
+
     public void logIn(String un, String ps){
         inputUsername.clear();
         inputPassword.clear();
@@ -47,4 +52,7 @@ public class LoginPage {
         }
     }
 
+    public String getSuccessSignupMessage(){
+        return successSignupMessage.getText();
+    }
 }

@@ -15,8 +15,14 @@
                 <span id="saved_message" >Your changes were successfully saved. Click
                     <a id="backHome_saved" href="/home">here</a> to continue.</span>
             </div>
-            <div class="alert alert-danger fill-parent" th:if="${error_message}">
+            <div class="alert alert-success fill-parent" th:if="${success_message_file}">
+                <h1 class="display-5">Success</h1>
+                <span id="success_message_file" th:text="${d12}">
+                    <a id="backHome_saved_file" href="/home">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-danger fill-parent" th:if="${edit_error}">
                 <h1 class="display-5">Error</h1>
+                <span th:text="${edit_error}"></span>
                 <span id="not_saved_message">Your changes were not saved. Click <a id="backHome_notSaved" href="/home">here</a> to continue.</span>
             </div>
             <div class="alert alert-danger fill-parent" th:if="${error_message}">

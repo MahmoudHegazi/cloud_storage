@@ -7,12 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.UUID;
+
+import static com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplication.SignupTokens;
 
 @Controller()
 @RequestMapping("/signup")
 public class SignupController {
     private final UserService userService;
-
+    private String signupToken = UUID.randomUUID().toString().toLowerCase();
     public SignupController(UserService userService) {
         this.userService = userService;
     }
@@ -23,7 +29,7 @@ public class SignupController {
     }
 
     @PostMapping
-    public String signupUser(@ModelAttribute User user, Model model) {
+    public Object signupUser(@ModelAttribute User user, Model model) {
         String signupError = null;
 
         if (!userService.isUsernameAvailable(user.getUsername())) {
@@ -38,11 +44,23 @@ public class SignupController {
         }
 
         if (signupError == null) {
-            model.addAttribute("signupSuccess", true);
+            RedirectView redirectView = new RedirectView();
+            setSignupToken(UUID.randomUUID().toString().toLowerCase());
+            String newUserToken = getSignupToken();
+            SignupTokens.add(newUserToken);
+            redirectView.setUrl("/login?signup_token="+newUserToken);
+            return redirectView;
         } else {
             model.addAttribute("signupError", signupError);
         }
-
         return "signup";
+    }
+
+    public String getSignupToken() {
+        return signupToken;
+    }
+
+    public void setSignupToken(String signupToken) {
+        this.signupToken = signupToken;
     }
 }

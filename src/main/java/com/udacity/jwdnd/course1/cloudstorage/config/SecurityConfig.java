@@ -23,20 +23,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(this.authenticationService);
     }
 
+    // add login to authorize request to accept the query parameters
+
     // configure logout in Advanced way and not change the original url logout delete cookies and not change logout default but setit
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/signup", "/css/**", "/js/**").permitAll()
+                .antMatchers("/signup", "/css/**", "/js/**", "/login").permitAll()
                 .anyRequest().authenticated(); // any request must be logged in first except signup and css and js
 
         http.formLogin()
-                .loginPage("/login")
+                .loginPage("/login") // redirect users to login url can be replaced with other url but bad
                 .permitAll()
                 .and()
                 .logout().logoutUrl("/logout").invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID").logoutSuccessUrl("/login?logout=true").permitAll();
-
         http.formLogin()
                 .defaultSuccessUrl("/home", true);
 

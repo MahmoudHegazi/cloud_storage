@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class NoteService {
@@ -20,7 +21,7 @@ public class NoteService {
     }
 
     // add new note or return 0 for error
-    public List<Note>  getAllUserNotes(Integer user_id) throws SQLException {
+    public List<Note> getAllUserNotes(Integer user_id) throws SQLException {
         return noteMapper.getLoggedUserNotes(user_id);
     }
 
@@ -43,6 +44,27 @@ public class NoteService {
             return new Response(true, "Note Removed Successfully");
         } else {
             return new Response(false, "Could Not Remove The Note");
+        }
+
+    }
+
+
+    // remove note for user and return response object with message and success status
+    public Response editNote(Note note) throws SQLException {
+        // edit
+        noteMapper.update(note);
+        // confirm edit done professionally
+        Note checkNote = noteMapper.getUserNoteBydId(note.getNote_id());
+        if (checkNote == null){
+            return new Response(false, "error");
+        }
+        boolean equalTitle = Objects.equals(checkNote.getNote_title(), note.getNote_title());
+        boolean equalDesc = Objects.equals(checkNote.getNote_description(), note.getNote_description());
+        String errorMsg = "There Are problem in edit valid title edits:" + equalTitle + ", valid description edit:" + equalDesc;
+        if (!equalTitle || !equalDesc) {
+            return new Response(false, errorMsg);
+        } else {
+            return new Response(true, "Note Edited Successfully");
         }
 
     }

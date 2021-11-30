@@ -5,24 +5,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CREDENTIALS")
 public class Credential {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer credentials_id;
     private String url;
-    private String username;
+    private String uname;
     private String secret_key;
     private String password;
 
     private Integer user_id;
 
-
-    public Integer getCredentials_id() {
-        return credentials_id;
-    }
-
-    public void setCredentials_id(Integer credentials_id) {
+    public Credential(Integer credentials_id, String url,String uname,  String secret_key, String password, Integer user_id){
         this.credentials_id = credentials_id;
+        this.url = url;
+        this.uname = uname;
+        this.secret_key = secret_key;
+        this.password = password;
+        this.user_id = user_id;
+
     }
+
+
 
     public String getUrl() {
         return url;
@@ -32,13 +36,6 @@ public class Credential {
         this.url = url;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getSecret_key() {
         return secret_key;
@@ -62,5 +59,21 @@ public class Credential {
 
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
+    }
+
+    public Integer getCredentials_id() {
+        return credentials_id;
+    }
+
+    public void setCredentials_id(Integer credentials_id) {
+        this.credentials_id = credentials_id;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 }

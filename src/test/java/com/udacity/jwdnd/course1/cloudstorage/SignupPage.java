@@ -57,6 +57,18 @@ public class SignupPage {
         System.out.println("Created User with Name: " + fn);
         System.out.println("Success: " + getSuccessMessage());
         System.out.println("Errors: " + getErrorMessage());
+
+
+    }
+
+    public String quickSignup() throws InterruptedException {
+        int randomNum = (int)(Math.random() * 990000);
+        String userName = "user" + randomNum + "_" + (int)(Math.random() * 990000);
+        String password = "password_" + randomNum + "_" + (int)(Math.random() * 990000);
+        this.createUser("im", "user "+randomNum, userName, password);
+        String result = userName + "," + password + "," +  this.getErrorMessage();
+        System.out.println(result);
+        return result;
     }
 
     // check if any error messages
