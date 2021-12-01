@@ -21,7 +21,6 @@ public interface FileMapper {
     void delete(Integer file_id);
 
 
-    // sorry this way only work with it tried 19 professional ways and language not accept it
     @Select("SELECT file_data FROM FILES WHERE user_id=#{user_id}")
     List<byte[]> getUserFilesData(Integer user_id);
 
